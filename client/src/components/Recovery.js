@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import styles from "../styles/Username.module.css";
-import { useAuthStore } from "./../store/store";
+// import { useAuthStore } from "./../store/store";
 import { generateOTP, verifyOTP } from "../helper/helper";
 import { useNavigate } from "react-router-dom";
 
+import { useSelector } from 'react-redux'; // redux
+
 export default function Recovery() {
   const navigate = useNavigate();
-  const { username } = useAuthStore((state) => state.auth);
+  // const { username } = useAuthStore((state) => state.auth);
+  const username = useSelector((state) => state.auth.username);
   const [OTP, setOTP] = useState();
 
   useEffect(() => {

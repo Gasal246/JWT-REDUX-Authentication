@@ -4,14 +4,18 @@ import avatar from '../assets/profile.png';
 import { Toaster } from 'react-hot-toast';
 import { useFormik } from 'formik';
 import { usernameValidate } from '../helper/validate'
-import { useAuthStore } from '../store/store';
+// import { useAuthStore } from '../store/store';
+import { setUsername } from '../state/auth/authSlice';
+import { useDispatch } from 'react-redux';
 
 import styles from '../styles/Username.module.css';
 
-export default function Username() {
 
+export default function Username() {
+  
+  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const setUsername = useAuthStore(state => state.setUsername)
+  // const setUsername = useAuthStore(state => state.setUsername)
 
   const formik = useFormik({
     initialValues : {
@@ -21,7 +25,8 @@ export default function Username() {
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit : async values => {
-      setUsername(values.username)
+      // setUsername(values.username)
+      dispatch(setUsername(values.username))
       navigate('/password')
     }
   })

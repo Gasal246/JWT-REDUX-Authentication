@@ -5,15 +5,18 @@ import toast, { Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
 import { passwordValidate } from "../helper/validate";
 import useFetch from "../hooks/fetch.hook";
-import { useAuthStore } from "../store/store";
+// import { useAuthStore } from "../store/store";
 import { verifyPassword } from "../helper/helper";
 
 import styles from "../styles/Username.module.css";
 
+import { useSelector } from 'react-redux'; // redux
+
 export default function Password() {
 
   const navigate = useNavigate()
-  const { username } = useAuthStore(state => state.auth)
+  // const { username } = useAuthStore(state => state.auth)
+  const username = useSelector((state) => state.auth.username);
   const [{ isLoading, apiData, serverError }] = useFetch(`/user/${username}`)
 
   const formik = useFormik({

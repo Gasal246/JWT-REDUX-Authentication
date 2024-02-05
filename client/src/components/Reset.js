@@ -4,14 +4,16 @@ import { useFormik } from 'formik';
 import { resetPasswordValidation } from '../helper/validate'
 import { resetPassword } from '../helper/helper';
 import styles from '../styles/Username.module.css';
-import { useAuthStore } from './../store/store';
+// import { useAuthStore } from './../store/store';
 import { useNavigate, Navigate } from 'react-router-dom';
 import useFetch from '../hooks/fetch.hook'
+import { useSelector } from 'react-redux'; //redux
 
 export default function Reset() {
 
   const navigate = useNavigate()
-  const { username } = useAuthStore(state => state.auth)
+  // const { username } = useAuthStore(state => state.auth)
+  const username = useSelector((state) => state.auth.username);
   const [{ isLoading, apiData, status, serverError }] = useFetch('createResetSession')
 
   const formik = useFormik({
