@@ -7,7 +7,7 @@ import router from "./router/route.js";
 const app = express();
 
 // middleware
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 app.use(cors());
 app.use(morgan("tiny"));
 app.disable("x-powered-by"); // this will allow less hackers know about this project stack

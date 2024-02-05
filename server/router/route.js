@@ -12,7 +12,7 @@ router.post('/register', controller.register)
 
 router.post('/registerMail', registerMail)
 
-router.post('/authenticate', (req, res) => res.end());
+router.post('/authenticate', controller.verifyUser, (req, res) => res.end());
 
 router.post('/login', controller.verifyUser, controller.login)
 
@@ -21,7 +21,7 @@ router.get('/user/:username', controller.getUser)
 
 router.get('/generateOTP', controller.verifyUser, localVariables, controller.generateOTP)
 
-router.get('/verifyOTP', controller.verifyOTP)
+router.get('/verifyOTP', controller.verifyUser, controller.verifyOTP)
 
 router.get('/createResetSession', controller.createResetSession)
 
